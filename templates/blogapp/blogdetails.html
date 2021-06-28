@@ -1,0 +1,16 @@
+{% extends "blogapp/base.html" %}
+{% block content %}
+<div class="col-md-8 offset-md-2">
+    <h1>{{post.title}}</h1>
+    <small>
+        {{post.created.date}}
+        Categories :
+        {% for category in post.categories.all %}
+        <a href="{% url 'blogcategory' category.name %}">
+            {{category.name}}
+        </a>
+        {% endfor %}
+        <img class="justify-center card-img-top" src="{{ post.postimage.url }}" height="350px">
+
+    </small>
+    <p>{{post.body | linebreaks}}</p>

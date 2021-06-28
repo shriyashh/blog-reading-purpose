@@ -1,0 +1,24 @@
+{% extends 'login/base.html' %}
+
+{% block content %}
+
+<div class="container">
+<h2>Register</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p>{{error}}</p>
+    {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+    <div class="form-group">
+        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br>
+    </div>
+    {% endfor %}
+    <input type="submit" class="btn btn-primary" value="Register"></input>
+    <small>already have an account! <a href="{% url 'login' %}"> Login </a>here.</small>
+</form>
+
+</div>
+{% endblock %}

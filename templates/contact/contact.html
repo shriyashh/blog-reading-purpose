@@ -1,0 +1,21 @@
+{% extends "contact/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-light">
+  <div class="container">
+    <h1 class="display-4 text-center">Write us</h1>
+    <p class="lead text-center">"Don't be a jerk, even if you are brilliant, don't be a jerk."</p>
+  </div>
+</div>
+
+<div class='container'>
+  <div class="col-sm-6">
+    <form action="" method="POST" >
+        {% csrf_token %}
+        {{form.as_p}}      
+        <button type="submit" class="btn btn-primary btn-transparent btn-sm">Submit</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "blogapp/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid bg-light">
+    <div class="container">
+      <h1 class="display-4 text-center">My Blog</h1>
+      <p class="lead text-center">"Don't be a jerk, even if you are brilliant, don't be a jerk."</p>
+    </div>
+  </div>
+
+<div class="col-md-8 offset-md-2">    
+    {% for post in posts %}
+    <h2><a href="{% url 'blogdetails' post.id %}">{{ post.title }}</a></h2>
+    <small>
+        {{ post.created.date }} |
+        Categories:
+        {% for category in post.categories.all %}
+        <a href="{% url 'blogcategory' category.name %}">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </small>
+    <div class="card my-3">
+    <img class="justify-center card-img-top" src="{{ post.postimage.url }}" height="350px">
+    </div>
+    <p>{{ post.body | slice:":400" }}...</p>
+    <hr>
+    {% endfor %}
+    
+</div>
+{% endblock %}
